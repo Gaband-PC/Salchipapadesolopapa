@@ -26,12 +26,15 @@ class CuentaBancaria:
         if monto <= 0:
             print("El monto a transferir debe ser positivo.")
             return False
+        if self.saldo == 0:
+            print("No hay saldo disponible para transferir.")
+            return False
         if monto > self.saldo:
             print("Fondos insuficientes para realizar la transferencia.")
             return False
         
         self.saldo -= monto
-        cuenta_destino.depositar(monto)
+        cuenta_destino.saldo +=monto
         print(f"Transferencia exitosa de {monto} de {self.titular} a {cuenta_destino.titular}.")
         print(f"Saldo actual de {self.titular}: {self.saldo}")
         return True
